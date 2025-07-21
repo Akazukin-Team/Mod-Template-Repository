@@ -7,7 +7,7 @@ slf4j = "2.1.0-alpha1"
 jetbrains-annotation = "26.0.2"
 
 #Test Modules
-junit-jupiter = "5.13.0-M3"
+junit-jupiter = "6.0.0-M1"
 
 # JMH Libraries
 jmh-lib = "1.37"
