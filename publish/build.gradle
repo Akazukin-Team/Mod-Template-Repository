@@ -1,0 +1,22 @@
+plugins {
+    id 'buildlogic.java-publish-conventions'
+}
+
+def childPjs = [
+        ':common:api',
+        ':common:impl',
+        ':fabric:common',
+        ':neoforge:common'
+]
+
+jar {
+    for (final def pj in childPjs) {
+        dependsOn("$pj:jar")
+    }
+}
+
+dependencies {
+    for (final def pj in childPjs) {
+        include project(pj)
+    }
+}

@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+configurations {
+    libFatjar
+    implementation.extendsFrom(libFatjar)
+}
+
+jar {
+    from {
+        configurations.libFatjar.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

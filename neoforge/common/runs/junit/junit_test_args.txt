@@ -1,0 +1,16 @@
+--launchTarget
+neoforgejunitdev
+--version
+21.8.4-beta
+--assetIndex
+asset-index
+--assetsDir
+C:\Users\abcqq\.gradle\caches\minecraft\assets
+--fml.fmlVersion
+9.0.16
+--fml.mcVersion
+1.21.8
+--fml.neoForgeVersion
+21.8.4-beta
+--fml.neoFormVersion
+20250717.133445

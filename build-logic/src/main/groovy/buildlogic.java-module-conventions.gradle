@@ -1,0 +1,26 @@
+plugins {
+    id 'buildlogic.java-common-conventions'
+    id 'buildlogic.java-toolchain-conventions'
+    id 'buildlogic.java-repository-conventions'
+    id 'buildlogic.java-test-conventions'
+
+    id 'java-library'
+}
+
+dependencies {
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+
+    compileOnly libs.jetbrains.annotations
+    annotationProcessor libs.jetbrains.annotations
+}
+
+
+tasks.withType(JavaCompile).configureEach {
+    configure(options) {
+        compilerArgs << '-Xlint'
+        compilerArgs << '-Xmaxerrs' << '10000'
+        compilerArgs << '-Xmaxwarns' << '10000'
+        compilerArgs << '-Xdiags:verbose'
+    }
+}

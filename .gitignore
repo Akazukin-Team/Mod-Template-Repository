@@ -1,0 +1,45 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+buildSrc/.gradle
+
+
+# Ignore Gradle build output directory
+build
+*/build
+*/src/main/generated
+*/bin
+
+
+# eclipse
+eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+
+# Ignore Jetbrains project settings directory
+.idea
+.fleet
+
+*.ipr
+*.iws
+*.iml
+
+.profileconfig.json
+static-analysis.datadog.yml
+
+
+# Ignore Eclipse settings directory
+# Idk
+
+
+# Ignore the test directory
+run
+
+
+# Ignore Log files
+*.log
+*.hprof

@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    configure(options) {
+        encoding = 'UTF-8'
+    }
+}
+
+tasks.withType(Javadoc).configureEach {
+    configure(options) {
+        locale = 'en_US'
+        encoding = docEncoding = charSet = 'UTF-8'
+    }
+}
+
+tasks.withType(AbstractCopyTask).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

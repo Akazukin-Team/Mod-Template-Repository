@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+configurations {
+    libClasspath
+    implementation.extendsFrom(libClasspath)
+}
+
+tasks.register('CopyDeps') {
+    group 'build'
+
+    doFirst {
+        delete 'build/libs/lib'
+        configurations.libClasspath.getResolvedConfiguration().resolvedArtifacts
+                .forEach { art ->
+                    copy {
+                        from art.file
+                        into "build/libs/lib/${art.moduleVersion.id.group ?: '_'}/${art.moduleVersion.id.name}/${art.moduleVersion.id.version}"
+                    }
+                }
+    }
+}
+
+jar {
+    doFirst {
+        manifest {
+            attributes(
+                    'Class-Path':
+                            configurations.libClasspath.getResolvedConfiguration().resolvedArtifacts
+                                    .collect {
+                                        "lib/${it.moduleVersion.id.group ?: '_'}/${it.moduleVersion.id.name}/${it.moduleVersion.id.version}/" + it.file.name
+                                    }
+                                    .join(' ')
+            )
+        }
+    }
+}

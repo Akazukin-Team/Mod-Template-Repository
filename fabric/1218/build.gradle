@@ -1,0 +1,23 @@
+plugins {
+    id 'buildlogic.java-fabric-conventions'
+    id 'buildlogic.java-module-conventions'
+}
+
+dependencies {
+    minecraft libs.minecraft.'1218'
+    mappings(variantOf(libs.fabric.yarn.'1218') {
+        classifier('v2')
+    })
+    modImplementation libs.fabric.loader.'1218'
+    modImplementation libs.fabric.api.'1218'
+
+    modImplementation libs.mod.fabric.modmenu.'1218'
+
+    implementation project(':common:api')
+    implementation project(':common:impl')
+    implementation(project(':fabric:common')) {
+        exclude group: 'net.fabricmc'
+        exclude group: 'net.fabricmc.fabric-api'
+    }
+    //implementation project(path: ':common:api', configuration: 'dev')
+}

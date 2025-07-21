@@ -1,0 +1,51 @@
+plugins {
+    id 'buildlogic.java-common-conventions'
+
+    id 'java-library'
+    id 'net.neoforged.gradle.userdev'
+}
+
+Properties props = new Properties()
+try (FileInputStream fis = new FileInputStream(new File(parent.rootDir.getPath(), 'application.properties'))) {
+    props.load(fis)
+}
+
+processResources {
+    inputs.property 'version', props.getProperty('version')
+    filteringCharset 'UTF-8'
+
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand 'MOD_ID': props.getProperty('id'),
+                'MOD_VERSION': props.getProperty('version'),
+                'MOD_NAME': props.getProperty('name'),
+                'MOD_DESCRIPTION': props.getProperty('description')
+    }
+}
+
+runs {
+    client {
+        client true
+        server false
+
+        workingDirectory 'run'
+
+        jvmArguments.addAll(['-Xms2G', '-Xmx6G',
+                             '-server',
+                             '-XX:+UnlockExperimentalVMOptions', '-XX:+UnlockDiagnosticVMOptions',
+                             '-XX:+UseParallelGC', '-XX:+DisableExplicitGC', '-XX:-UseGCOverheadLimit',
+                             '-XX:+TieredCompilation', '-XX:CompileThreshold=500', '-XX:MaxInlineSize=64',
+                             '-XX:+UseCompressedOops', '-XX:+UseStringDeduplication', '-XX:+OptimizeStringConcat',
+                             '-XX:+AlwaysPreTouch',
+                             '-XX:+CrashOnOutOfMemoryError', '-XX:+HeapDumpOnOutOfMemoryError',
+                             '-Dsun.stdout.encoding=UTF-8', '-Dsun.stderr.encoding=UTF-8'])
+        if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_1_8)) {
+            jvmArguments.add('-XX:+TieredCompilation')
+        }
+        if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_1_9)) {
+            jvmArguments.add('-XX:+UseFastAccessorMethods')
+        }
+        if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_13)) {
+            jvmArguments.add('-XX:+AggressiveOpts')
+        }
+    }
+}

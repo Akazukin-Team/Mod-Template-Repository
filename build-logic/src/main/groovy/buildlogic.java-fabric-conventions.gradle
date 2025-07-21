@@ -1,0 +1,54 @@
+plugins {
+    id 'buildlogic.java-module-conventions'
+
+    id 'java-library'
+    id 'fabric-loom'
+}
+
+
+loom {
+    enableModProvidedJavadoc.set(true)
+
+    runs {
+        client {
+            environment = "client"
+            runDir = "run"
+            client()
+
+            vmArgs.addAll(['-Xms2G', '-Xmx6G',
+                           '-server',
+                           '-XX:+UnlockExperimentalVMOptions', '-XX:+UnlockDiagnosticVMOptions',
+                           '-XX:+UseParallelGC', '-XX:+DisableExplicitGC', '-XX:-UseGCOverheadLimit',
+                           '-XX:+TieredCompilation', '-XX:CompileThreshold=500', '-XX:MaxInlineSize=64',
+                           '-XX:+UseCompressedOops', '-XX:+UseStringDeduplication', '-XX:+OptimizeStringConcat',
+                           '-XX:+AlwaysPreTouch',
+                           '-XX:+CrashOnOutOfMemoryError', '-XX:+HeapDumpOnOutOfMemoryError',
+                           '-Dsun.stdout.encoding=UTF-8', '-Dsun.stderr.encoding=UTF-8'])
+            if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_1_8)) {
+                vmArgs.add('-XX:+TieredCompilation')
+            }
+            if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_1_9)) {
+                vmArgs.add('-XX:+UseFastAccessorMethods')
+            }
+            if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_13)) {
+                vmArgs.add('-XX:+AggressiveOpts')
+            }
+        }
+    }
+}
+
+Properties props = new Properties()
+try (FileInputStream fis = new FileInputStream(new File(parent.rootDir.getPath(), 'application.properties'))) {
+    props.load(fis)
+}
+
+processResources {
+    filteringCharset 'UTF-8'
+
+    filesMatching('fabric.mod.json') {
+        expand 'MOD_ID': props.getProperty('id'),
+                'MOD_VERSION': props.getProperty('version'),
+                'MOD_NAME': props.getProperty('name'),
+                'MOD_DESCRIPTION': props.getProperty('description')
+    }
+}

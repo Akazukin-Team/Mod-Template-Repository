@@ -1,0 +1,14 @@
+plugins {
+    id 'java-library'
+}
+
+configurations {
+    include
+    implementation.extendsFrom(include)
+}
+
+jar {
+    from {
+        configurations.include
+    }
+}

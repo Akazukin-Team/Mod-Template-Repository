@@ -1,0 +1,30 @@
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
+
+plugins {
+    id 'buildlogic.java-toolchain-conventions'
+
+    id 'java'
+}
+
+Properties props = new Properties()
+try (FileInputStream fis = new FileInputStream(new File(parent.rootDir.getPath(), 'application.properties'))) {
+    props.load(fis)
+}
+
+String date = ZonedDateTime.now(ZoneOffset.UTC).getDateTimeString()
+
+tasks.withType(org.gradle.jvm.tasks.Jar).configureEach {
+    manifest {
+        attributes 'Build-Jdk-Spec': JavaVersion.current(),
+                'Built-By': props.getProperty('vendor'),
+                'Specification-Title': props.getProperty('name'),
+                'Specification-Version': props.getProperty('version'),
+                'Specification-Vendor': props.getProperty('vendor'),
+                'Implementation-Title': props.getProperty('name'),
+                'Implementation-Version': props.getProperty('version'),
+                'Implementation-Vendor': props.getProperty('vendor'),
+                'Implementation-Build-Date': date,
+                'Multi-Release': true
+    }
+}

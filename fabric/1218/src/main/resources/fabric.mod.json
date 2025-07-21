@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "${MOD_ID}",
+  "version": "${MOD_VERSION}",
+  "name": "${MOD_NAME}",
+  "description": "${MOD_DESCRIPTION}",
+  "authors": [
+    "Currypan1229"
+  ],
+  "contributors": [
+    "Currypan1229"
+  ],
+  "contact": {
+    "homepage": "https://discord.gg/",
+    "sources": "https://github.com/AkazukinTeam/Mod-Template-Repository/",
+    "issues": "https://github.com/AkazukinTeam/Mod-Template-Repository/issues",
+    "email": "Akazukin.Team+Support@gmail.com"
+  },
+  "license": "GNU General Public License v3.0",
+  "icon": "icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "org.akazukin.template.compat.fabric.common.FabricTemplateModInitializer"
+    ]
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "mod.generic.forum": "https://discord.gg/"
+      }
+    }
+  },
+  "mixins": [
+    "fabric.common.minecraft.mixins.json",
+    "fabric.v1218.minecraft.mixins.json"
+  ],
+  "depends": {
+    "minecraft": [
+      "=1.21.8"
+    ],
+    "fabricloader": ">=0.16.10"
+  },
+  "suggests": {
+    "fabric": ">=0.129.0"
+  },
+  "accessWidener": "fabric.v1218.minecraft.accesswidener"
+}

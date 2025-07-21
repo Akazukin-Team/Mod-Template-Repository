@@ -1,0 +1,35 @@
+plugins {
+    id 'buildlogic.java-common-conventions'
+
+    id 'java'
+    id 'jvm-test-suite'
+}
+
+testing {
+    suites {
+        unitTest(JvmTestSuite) {
+            dependencies {
+                implementation project()
+            }
+        }
+
+        integrationTest(JvmTestSuite) {
+            dependencies {
+                implementation project()
+            }
+        }
+    }
+}
+
+tasks.withType(Test).configureEach {
+    it.workingDir = new File(projectDir, "run/test/${it.name}")
+}
+
+tasks.named('check') {
+    dependsOn(testing.suites.unitTest)
+    dependsOn(testing.suites.integrationTest)
+}
+
+tasks.named('test') {
+    enabled = false
+}

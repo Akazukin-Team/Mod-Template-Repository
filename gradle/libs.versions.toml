@@ -1,0 +1,59 @@
+[versions]
+#App deps
+akz-service = "4.0.0"
+akz-util = "4.0.0"
+lombok = "1.18.38"
+slf4j = "2.1.0-alpha1"
+jetbrains-annotation = "26.0.2"
+
+#Test Modules
+junit-jupiter = "5.13.0-M3"
+
+# JMH Libraries
+jmh-lib = "1.37"
+
+#Gradle Plugin
+gradle-versions = "0.52.0"
+jmh-pl = "0.7.3"
+fabric-loom = "1.11-SNAPSHOT"
+neoforge-gradle = "7.0.190"
+
+# Minecraft Libraries
+minecraft-1218 = "1.21.8"
+fabric-yarn-1218 = "1.21.8+build.1"
+fabric-loader-1218 = "0.16.14"
+fabric-api-1218 = "0.129.0+1.21.8"
+mod-fabric-modmenu-1218 = "15.0.0-beta.3"
+neoforge-api-1218 = "21.8.4-beta"
+
+
+[libraries]
+#App deps
+akz-service = { module = "org.akazukin:service", version.ref = "akz-service" }
+akz-util = { module = "org.akazukin:util", version.ref = "akz-util" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+slf4j = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotation" }
+
+#Test Modules
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+junit-platform = { module = "org.junit.platform:junit-platform-launcher" }
+
+# JMH Libraries
+jmh-core = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh-lib" }
+jmh-apt = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "jmh-lib" }
+jmh-bytecode = { module = "org.openjdk.jmh:jmh-generator-bytecode", version.ref = "jmh-lib" }
+
+#Gradle Plugin
+gradle-versions = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "gradle-versions" }
+jmh-pl = { module = "me.champeau.jmh:me.champeau.jmh.gradle.plugin", version.ref = "jmh-pl" }
+fabric-loom = { module = "fabric-loom:fabric-loom.gradle.plugin", version.ref = "fabric-loom" }
+neoforge-gradle = { module = "net.neoforged.gradle.userdev:net.neoforged.gradle.userdev.gradle.plugin", version.ref = "neoforge-gradle" }
+
+# Minecraft Libraries
+minecraft-1218 = { module = "org.mojang:minecraft", version.ref = "minecraft-1218" }
+fabric-yarn-1218 = { module = "net.fabricmc:yarn", version.ref = "fabric-yarn-1218" }
+fabric-loader-1218 = { module = "net.fabricmc:fabric-loader", version.ref = "fabric-loader-1218" }
+fabric-api-1218 = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric-api-1218" }
+mod-fabric-modmenu-1218 = { module = "com.terraformersmc:modmenu", version.ref = "mod-fabric-modmenu-1218" }
+neoforge-api-1218 = { module = "net.neoforged:neoforge", version.ref = "neoforge-api-1218" }

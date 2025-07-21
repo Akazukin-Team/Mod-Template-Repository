@@ -1,0 +1,44 @@
+plugins {
+    id 'buildlogic.java-neoforge-conventions'
+    id 'buildlogic.java-module-conventions'
+}
+
+configurations {
+    runtimeOnly.canBeResolved = true
+    implementation.canBeResolved = true
+}
+
+dependencies {
+    implementation project(':common:api')
+    implementation project(':common:impl')
+}
+
+dependencies {
+    implementation libs.neoforge.api.'1218'
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs += file('../../common/api/src/main/resources')
+            srcDirs += file('../../common/impl/src/main/resources')
+        }
+    }
+}
+
+minecraft {
+    accessTransformers {
+        file('src/main/resources/minecraft.neoforge.common.accesstransformer')
+    }
+}
+
+runs {
+    client {
+        modSource project.sourceSets.main
+
+        dependencies {
+            runtime project.configurations.runtimeOnly
+            runtime project.configurations.implementation
+        }
+    }
+}
