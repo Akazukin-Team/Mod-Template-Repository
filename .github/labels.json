@@ -85,9 +85,39 @@
     "color": "66ffff"
   },
   {
-    "name": "type/breaking changes",
-    "description": "Breaking changes",
+    "name": "type/dependency",
+    "description": "Dependency related",
+    "color": "66ffff"
+  },
+  {
+    "name": "type/github",
+    "description": "GitHub related",
+    "color": "66ffff"
+  },
+  {
+    "name": "breaking/implementation",
+    "description": "Breaking changes in implementation",
     "color": "ff0000"
+  },
+  {
+    "name": "breaking/api",
+    "description": "Breaking changes in API",
+    "color": "ff0000"
+  },
+  {
+    "name": "version/major",
+    "description": "Major version changes (breaking changes)",
+    "color": "4169e1"
+  },
+  {
+    "name": "version/minor",
+    "description": "Minor version changes (new features)",
+    "color": "4169e1"
+  },
+  {
+    "name": "version/patch",
+    "description": "Patch version changes (bug fixes)",
+    "color": "4169e1"
   },
   {
     "name": "bot/dependabot",
@@ -105,7 +135,7 @@
     "color": "228b22"
   },
   {
-    "name": "status/in progress",
+    "name": "status/in-progress",
     "description": "In progress task or issue",
     "color": "228b22"
   },
@@ -121,17 +151,17 @@
   },
   {
     "name": "difficulty/easy",
-    "description": "Easy task or issue",
+    "description": "Difficulty: Easy",
     "color": "ffff00"
   },
   {
     "name": "difficulty/normal",
-    "description": "Normal task or issue",
+    "description": "Difficulty: Normal",
     "color": "ffff00"
   },
   {
     "name": "difficulty/hard",
-    "description": "Hard task or issue",
+    "description": "Difficulty: Hard",
     "color": "ffff00"
   }
 ]

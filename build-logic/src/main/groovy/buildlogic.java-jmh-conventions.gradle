@@ -32,15 +32,15 @@ jmh {
     warmupForks = 0
     warmupIterations = 1
 
-    jvmArgs = ['-Xms512M', '-Xmx2G',
-               '-server',
-               '-XX:+UnlockExperimentalVMOptions', '-XX:+UnlockDiagnosticVMOptions',
-               '-XX:+UseParallelGC', '-XX:+DisableExplicitGC', '-XX:-UseGCOverheadLimit',
-               '-XX:+TieredCompilation', '-XX:CompileThreshold=1', '-XX:MaxInlineSize=64',
-               '-XX:+UseCompressedOops', '-XX:+UseStringDeduplication', '-XX:+OptimizeStringConcat',
-               '-XX:+AlwaysPreTouch',
-               '-XX:+CrashOnOutOfMemoryError', '-XX:+HeapDumpOnOutOfMemoryError',
-               '-Dsun.stdout.encoding=UTF-8', '-Dsun.stderr.encoding=UTF-8']
+    jvmArgs.addAll(['-Xms512M', '-Xmx2G',
+                    '-server',
+                    '-XX:+UnlockExperimentalVMOptions', '-XX:+UnlockDiagnosticVMOptions',
+                    '-XX:+UseParallelGC', '-XX:+DisableExplicitGC', '-XX:-UseGCOverheadLimit',
+                    '-XX:+TieredCompilation', '-XX:CompileThreshold=1', '-XX:MaxInlineSize=64',
+                    '-XX:+UseCompressedOops', '-XX:+UseStringDeduplication', '-XX:+OptimizeStringConcat',
+                    '-XX:+AlwaysPreTouch',
+                    '-XX:+CrashOnOutOfMemoryError', '-XX:+HeapDumpOnOutOfMemoryError',
+                    '-Dsun.stdout.encoding=UTF-8', '-Dsun.stderr.encoding=UTF-8'])
     if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_1_8)) {
         jvmArgs += '-XX:+TieredCompilation'
     }
