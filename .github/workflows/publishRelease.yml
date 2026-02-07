@@ -6,7 +6,7 @@ on:
 
 
 env:
-  JDK_VERSION: 21
+  JDK_VERSION: 24
 
 jobs:
   build:
@@ -18,17 +18,17 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.gradle
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
 
       - name: Setup JDK ${{ env.JDK_VERSION }}
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: ${{ env.JDK_VERSION }}
           distribution: 'adopt'
@@ -36,8 +36,11 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+      - name: Clean cache
+        run: ./gradlew clean
+
       - name: Build and Test
-        run: ./gradlew build test
+        run: ./gradlew build check
 
       - name: Publish to Nexus
         run: ./gradlew publishReleasePublicationToReleasesRepository publishSnapshotPublicationToSnapshotsRepository -Dorg.gradle.unsafe.configuration-cache=false

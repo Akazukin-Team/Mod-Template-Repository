@@ -8,12 +8,16 @@ plugins {
 testing {
     suites {
         unitTest(JvmTestSuite) {
+            useJUnitJupiter()
+
             dependencies {
                 implementation project()
             }
         }
 
         integrationTest(JvmTestSuite) {
+            useJUnitJupiter()
+
             dependencies {
                 implementation project()
             }
@@ -21,15 +25,22 @@ testing {
     }
 }
 
+tasks.named('test') {
+    enabled = false
+}
+
 tasks.withType(Test).configureEach {
+    if (!it.enabled) {
+        return
+    }
+
     it.workingDir = new File(projectDir, "run/test/${it.name}")
+    if (!it.workingDir.exists()) {
+        it.workingDir.mkdirs()
+    }
 }
 
 tasks.named('check') {
     dependsOn(testing.suites.unitTest)
     dependsOn(testing.suites.integrationTest)
-}
-
-tasks.named('test') {
-    enabled = false
 }

@@ -2,12 +2,9 @@
 #App deps
 akz-service = "4.0.0"
 akz-util = "4.0.0"
-lombok = "1.18.38"
+lombok = "1.18.42"
+jetbrains-annotation = "26.0.2-1"
 slf4j = "2.1.0-alpha1"
-jetbrains-annotation = "26.0.2"
-
-#Test Modules
-junit-jupiter = "5.13.0-M3"
 
 # JMH Libraries
 jmh-lib = "1.37"
@@ -32,12 +29,8 @@ neoforge-api-1218 = "21.8.4-beta"
 akz-service = { module = "org.akazukin:service", version.ref = "akz-service" }
 akz-util = { module = "org.akazukin:util", version.ref = "akz-util" }
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
-slf4j = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotation" }
-
-#Test Modules
-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
-junit-platform = { module = "org.junit.platform:junit-platform-launcher" }
+slf4j = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 
 # JMH Libraries
 jmh-core = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh-lib" }
